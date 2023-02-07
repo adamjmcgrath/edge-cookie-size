@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 export function middleware(req) {
-  const x = req.cookies.get('x');
+  const x = req.cookies.get('x')?.value;
 
   const res = new NextResponse(
       JSON.stringify({ x, length: x?.length }),
