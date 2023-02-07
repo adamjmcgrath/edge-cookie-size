@@ -1,12 +1,16 @@
 import { NextResponse } from 'next/server';
 
 export function middleware(req) {
-  const cookie = req.headers.get('cookie');
+  const x = req.cookies.get('x');
 
-  return new NextResponse(
-      JSON.stringify({ cookie, length: cookie?.length }),
+  const res = new NextResponse(
+      JSON.stringify({ x, length: x?.length }),
       { headers: { 'content-type': 'application/json' } }
   )
+
+  res.cookies.set('x', x);
+
+  return res;
 }
 
 export const config = {
